@@ -1,0 +1,1084 @@
+/* ========================================
+   DYLAN DUAN PORTFOLIO
+   Three art styles mapped to sections:
+   — Cosmic/Starfield (Recurrence)  → Hero + Art
+   — Pop/Bold (Street Corner)       → Projects
+   — Ink/Crosshatch (Life After)    → About + Skills
+   ======================================== */
+
+/* ---------- Custom Properties ---------- */
+:root {
+  /* Backgrounds */
+  --bg-void: #0a0803;
+  --bg-deep: #100e09;
+  --bg-panel: rgba(20, 16, 8, 0.7);
+
+  /* Text — cream palette from art portfolio */
+  --text-primary: #f7f3ed;
+  --text-secondary: #c4b89a;
+  --text-muted: #7a6e5c;
+
+  /* Gold accent — base */
+  --accent: #c9972a;
+  --accent-bright: #e8b84b;
+  --accent-dim: #8a6418;
+  --accent-glow: rgba(201, 151, 42, 0.35);
+  --accent-silver: #9ca3af;
+
+  /* ── POP style (Street Corner) ── */
+  --pop-orange: #e8691e;
+  --pop-orange-dim: rgba(232, 105, 30, 0.18);
+  --pop-orange-glow: rgba(232, 105, 30, 0.35);
+
+  /* ── COSMIC style (Recurrence) ── */
+  --cosmic-blue: #c8d8ff;
+  --cosmic-blue-dim: rgba(150, 180, 255, 0.15);
+  --cosmic-glow: rgba(100, 149, 237, 0.25);
+
+  /* ── INK style (Life After-Effects) ── */
+  --ink-cream-line: rgba(247, 243, 237, 0.018);
+
+  /* Lines */
+  --line-color: rgba(247, 243, 237, 0.08);
+  --line-strong: rgba(247, 243, 237, 0.15);
+
+  /* Layout */
+  --max-width: 800px;
+  --section-pad-y: 6rem;
+  --section-pad-x: 1.5rem;
+
+  /* Typography */
+  --font-body: 'VT323', monospace;
+  --font-mono: 'VT323', monospace;
+  --font-serif: 'Playfair Display', serif;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-italic: 'Cormorant Garamond', serif;
+
+  /* Transitions */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --speed: 0.4s;
+}
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-void);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  font-size: 1.25rem;
+}
+
+/* Subtle warm grain overlay */
+body::before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0; left: 0; bottom: 0; right: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.35;
+  z-index: 998;
+  pointer-events: none;
+}
+
+/* Warm gold radial glow at top-right */
+body::after {
+  content: '';
+  display: block;
+  position: fixed;
+  top: -10%;
+  right: -5%;
+  width: 55%;
+  height: 70%;
+  background: radial-gradient(ellipse, rgba(201, 151, 42, 0.06) 0%, transparent 70%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+a {
+  color: var(--accent-bright);
+  text-decoration: none;
+  transition: color var(--speed) var(--ease);
+}
+
+a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+::selection {
+  background: var(--accent);
+  color: #000;
+}
+
+.mt-2 {
+  margin-top: 1.5rem;
+}
+
+/* ---------- Canvas Background ---------- */
+#starfield {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.content-wrapper {
+  position: relative;
+  z-index: 1;
+  padding-left: 0;
+}
+
+/* ---------- Camera Dial Navigation ---------- */
+.dial-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 100;
+  width: 120px;
+  height: 120px;
+  border-radius: 0;
+  background: #0d0a04;
+  border: 3px solid var(--accent);
+  box-shadow: 6px 6px 0px var(--accent-dim);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform var(--speed) var(--ease);
+}
+
+@media (max-width: 767px) {
+  .dial-container {
+    bottom: 1rem;
+    right: 1rem;
+    width: 100px;
+    height: 100px;
+  }
+}
+
+.dial-lens {
+  position: absolute;
+  width: 90%;
+  height: 90%;
+  border-radius: 0;
+  background: #080600;
+  overflow: hidden;
+  border: 1px solid var(--accent-dim);
+}
+
+.dial-lens::after {
+  content: '';
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 45%;
+  background: rgba(201, 151, 42, 0.04);
+  pointer-events: none;
+}
+
+.dial-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1px;
+  height: 1px;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.dial-item {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  transform-origin: left center;
+  transform: rotate(var(--angle)) translateY(-50%) translateX(32px);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.3s;
+}
+
+@media (max-width: 767px) {
+  .dial-item {
+    font-size: 0.55rem;
+    transform: rotate(var(--angle)) translateY(-50%) translateX(25px);
+  }
+}
+
+.dial-item.active {
+  color: var(--accent-bright);
+  font-weight: 600;
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+.dial-indicator {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 14px;
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent-glow);
+  border-radius: 0;
+  z-index: 5;
+}
+
+.dial-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 18px;
+  height: 18px;
+  background: var(--accent);
+  border-radius: 0;
+  border: 2px solid #0d0a04;
+  z-index: 4;
+}
+
+/* ---------- Typography & Section Structure ---------- */
+.section {
+  padding: var(--section-pad-y) var(--section-pad-x);
+  min-height: auto;
+  position: relative;
+}
+
+.section-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.section-header {
+  margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: 1rem;
+}
+
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-bottom: 0.25rem;
+  letter-spacing: 0.2em;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  text-shadow: 3px 3px 0px var(--accent-dim);
+  text-transform: uppercase;
+}
+
+.raw-text {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.25rem;
+}
+
+.raw-text strong {
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.raw-list {
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.raw-list li {
+  margin-bottom: 0.5rem;
+}
+
+.raw-link {
+  color: var(--text-secondary);
+}
+
+/* ══════════════════════════════════════════════════
+   HERO — Cosmic/Starfield (Recurrence style)
+   Deep space, Playfair Display name, Cormorant tagline,
+   gold foil gradient for the medal line.
+══════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  padding-top: 2rem;
+  position: relative;
+  background: #06060f;
+}
+
+/* Constellation CSS stars behind hero */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at  7%  18%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 22%  72%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(2px   2px   at 41%  38%, rgba(200,220,255,0.5)  0%, transparent 100%),
+    radial-gradient(1px   1px   at 58%  85%, rgba(255,255,255,0.3)  0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 74%  25%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 88%  60%, rgba(200,220,255,0.4)  0%, transparent 100%),
+    radial-gradient(2px   2px   at 13%  90%, rgba(255,255,255,0.25) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 63%  12%, rgba(255,255,255,0.5)  0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 93%  82%, rgba(200,220,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 33%  55%, rgba(255,255,255,0.25) 0%, transparent 100%);
+  pointer-events: none;
+  animation: starPulse 8s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+/* Blue cosmic glow from left */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: -5%;
+  width: 50%;
+  height: 60%;
+  background: radial-gradient(ellipse, rgba(100, 140, 255, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes starPulse {
+  from { opacity: 0.5; }
+  to   { opacity: 1;   }
+}
+
+.hero-greeting {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.15em;
+}
+
+/* Playfair Display for name — bold serif like art portfolio hero */
+.hero-name {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.95;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/* "Duan" in italic like art portfolio: Dylan <em>Duan</em> */
+.hero-name em {
+  font-style: italic;
+  font-weight: 400;
+  color: rgba(247, 243, 237, 0.55);
+}
+
+.hero-name:hover em {
+  animation: glitch-anim 0.2s linear infinite;
+  color: var(--cosmic-blue);
+}
+
+@keyframes glitch-anim {
+  0%   { transform: translate(0);          text-shadow: 4px 4px 0px var(--accent-dim); }
+  20%  { transform: translate(-3px, 3px);  text-shadow: -4px -4px 0px #c9972a, 4px 4px 0px #c8d8ff; }
+  40%  { transform: translate(-3px, -3px); text-shadow: 4px 4px 0px #c9972a, -4px -4px 0px #c8d8ff; }
+  60%  { transform: translate(3px, 3px);   text-shadow: -4px 4px 0px #c9972a, 4px -4px 0px #c8d8ff; }
+  80%  { transform: translate(3px, -3px);  text-shadow: 4px -4px 0px #c9972a, -4px 4px 0px #c8d8ff; }
+  100% { transform: translate(0);          text-shadow: 4px 4px 0px var(--accent-dim); }
+}
+
+.hero-title {
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 2rem;
+  letter-spacing: 0.05em;
+}
+
+.hero-amp {
+  color: var(--accent-bright);
+}
+
+/* Tagline: Cormorant Garamond italic (like art portfolio descriptions) */
+.hero-tagline {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: rgba(247, 243, 237, 0.55);
+  line-height: 1.8;
+  border-left: 2px solid rgba(150, 180, 255, 0.25);
+  padding-left: 1rem;
+  max-width: 520px;
+}
+
+/* Gold foil gradient for the medal line — matching Recurrence award text */
+.hero-tagline-medal {
+  background: linear-gradient(90deg, #b8860b 0%, #ffd700 40%, #daa520 70%, #f9e07a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* ---------- Hero Social Pills ---------- */
+.hero-social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.social-pill {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--cosmic-blue);
+  border: 1px solid var(--cosmic-blue-dim);
+  padding: 0.3rem 0.8rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+  letter-spacing: 0.1em;
+  box-shadow: 0 0 8px rgba(100, 149, 237, 0.1);
+}
+
+.social-pill:hover {
+  background: rgba(100, 149, 237, 0.12);
+  color: var(--cosmic-blue);
+  box-shadow: 0 0 20px rgba(100, 149, 237, 0.25), 4px 4px 0px var(--cosmic-blue-dim);
+  transform: translate(-2px, -2px);
+  text-decoration: none;
+}
+
+/* ══════════════════════════════════════════════════
+   ABOUT — Ink/Crosshatch (Life After-Effects style)
+   Crosshatch grid texture, cream offset shadows.
+══════════════════════════════════════════════════ */
+#about {
+  background: #0d0c0a;
+}
+
+/* Crosshatch watermark — from Life After-Effects etching */
+#about::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg, transparent, transparent 28px,
+      var(--ink-cream-line) 28px, var(--ink-cream-line) 29px
+    ),
+    repeating-linear-gradient(
+      90deg, transparent, transparent 28px,
+      var(--ink-cream-line) 28px, var(--ink-cream-line) 29px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Section title: Playfair Display for About (ink/serif feel) */
+#about .section-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  text-shadow: 8px 8px 0 rgba(247,243,237,0.05), 4px 4px 0 rgba(247,243,237,0.07);
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+#about .section-label {
+  color: rgba(247, 243, 237, 0.35);
+}
+
+/* Ink-style about text: Cormorant Garamond italic */
+.about-content .raw-text {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: rgba(247, 243, 237, 0.65);
+}
+
+.about-content .raw-text strong {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Ink-frame offset for about list */
+.about-list {
+  border-left: 2px solid rgba(247, 243, 237, 0.12);
+  padding-left: 1rem;
+}
+
+.warm-li {
+  color: var(--accent-bright) !important;
+}
+
+/* ══════════════════════════════════════════════════
+   PROJECTS — Pop/Bold (Street Corner style)
+   Bebas Neue titles, orange-red energy, hard shadows.
+══════════════════════════════════════════════════ */
+#projects {
+  background: #0f0d08;
+}
+
+/* Warm orange bleed from top-right — like Street Corner's warm light */
+#projects::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  right: -5%;
+  width: 55%;
+  height: 70%;
+  background: radial-gradient(ellipse, rgba(232, 105, 30, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Pop title: Bebas Neue bold condensed */
+#projects .section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 4.5rem);
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  color: var(--pop-orange);
+  text-shadow: none;
+  text-transform: uppercase;
+}
+
+#projects .section-label {
+  color: rgba(232, 105, 30, 0.6);
+}
+
+#projects .section-header {
+  border-bottom-color: var(--pop-orange-dim);
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-row {
+  padding: 1.5rem;
+  border: 1px solid rgba(232, 105, 30, 0.2);
+  border-left: 3px solid var(--pop-orange);
+  margin-bottom: 2rem;
+  /* Hard pop offset shadow — like Street Corner's frame */
+  box-shadow: 6px 6px 0px var(--pop-orange-dim), 12px 12px 0 rgba(26, 58, 107, 0.1);
+  background: rgba(15, 13, 8, 0.85);
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+.project-row:last-child {
+  margin-bottom: 0;
+}
+
+.project-row:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 10px 10px 0px var(--pop-orange-glow), 20px 20px 0 rgba(26, 58, 107, 0.15);
+  border-color: var(--pop-orange);
+}
+
+.row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* Bebas Neue for project titles — bold, urban, Street Corner energy */
+.row-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--pop-orange);
+  line-height: 1;
+}
+
+.row-links {
+  display: flex;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.row-links a {
+  color: rgba(232, 105, 30, 0.7);
+  transition: color 0.2s;
+}
+
+.row-links a:hover {
+  color: var(--pop-orange);
+  text-decoration: none;
+}
+
+.raw-tags {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(232, 105, 30, 0.55);
+  letter-spacing: 0.05em;
+}
+
+/* ══════════════════════════════════════════════════
+   ART — Each card styled after its own artwork
+══════════════════════════════════════════════════ */
+#art {
+  background: #06060f;
+}
+
+/* Constellation starfield — matching Recurrence background */
+#art::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.5px 1.5px at  7%  18%, rgba(255,255,255,0.55) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 22%  72%, rgba(255,255,255,0.4)  0%, transparent 100%),
+    radial-gradient(2px   2px   at 41%  38%, rgba(200,220,255,0.6)  0%, transparent 100%),
+    radial-gradient(1px   1px   at 58%  85%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 74%  25%, rgba(255,255,255,0.5)  0%, transparent 100%),
+    radial-gradient(1px   1px   at 88%  60%, rgba(200,220,255,0.45) 0%, transparent 100%),
+    radial-gradient(2px   2px   at 13%  90%, rgba(255,255,255,0.3)  0%, transparent 100%),
+    radial-gradient(1px   1px   at 63%  12%, rgba(255,255,255,0.6)  0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 93%  82%, rgba(200,220,255,0.4)  0%, transparent 100%),
+    radial-gradient(1px   1px   at 33%  55%, rgba(255,255,255,0.3)  0%, transparent 100%);
+  pointer-events: none;
+  animation: starPulse 8s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+/* Art section title in gold foil */
+#art .section-title {
+  font-family: var(--font-italic);
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: -0.01em;
+  color: var(--cosmic-blue);
+  text-shadow: 0 0 40px rgba(100, 149, 237, 0.3);
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.section-label--gold {
+  color: var(--accent-bright) !important;
+  letter-spacing: 0.25em;
+}
+
+.section-header--art {
+  border-bottom-color: rgba(150, 180, 255, 0.2) !important;
+}
+
+.art-intro {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: rgba(200, 216, 255, 0.5);
+  margin-bottom: 2rem;
+  border-left: 2px solid var(--cosmic-blue-dim);
+  padding-left: 1rem;
+  line-height: 1.7;
+}
+
+.art-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+@media (min-width: 600px) {
+  .art-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Base art card */
+.art-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+.art-card-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.art-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.art-card-body .raw-text {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.art-card-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+}
+
+/* ── COSMIC card (Recurrence Between Two Best Friends) ── */
+.art-card--cosmic {
+  background: rgba(6, 6, 15, 0.9);
+  border: 1px solid var(--cosmic-blue-dim);
+  border-left: 3px solid var(--cosmic-blue);
+  box-shadow:
+    0 0 0 1px rgba(150, 180, 255, 0.1),
+    6px 6px 0 var(--cosmic-glow),
+    0 0 30px rgba(100, 149, 237, 0.06);
+}
+
+.art-card--cosmic:hover {
+  transform: translate(-4px, -4px);
+  box-shadow:
+    0 0 0 1px rgba(150, 180, 255, 0.2),
+    10px 10px 0 var(--cosmic-glow),
+    0 0 50px rgba(100, 149, 237, 0.12);
+}
+
+.art-card--cosmic .art-card-title {
+  font-family: var(--font-italic);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--cosmic-blue);
+  text-shadow: 0 0 20px rgba(100, 149, 237, 0.3);
+}
+
+.art-card--cosmic .art-card-icon--cosmic {
+  color: var(--cosmic-blue);
+  text-shadow: 0 0 12px rgba(100, 149, 237, 0.6);
+}
+
+.art-card--cosmic .raw-text {
+  color: rgba(200, 216, 255, 0.5);
+}
+
+/* Gold foil medal text — matching Louvre award in art portfolio */
+.art-award--gold-foil {
+  background: linear-gradient(90deg, #b8860b 0%, #ffd700 40%, #daa520 70%, #f9e07a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  border-left: 2px solid #c9972a;
+  padding-left: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.art-btn--cosmic {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--cosmic-blue);
+  border: 1px solid var(--cosmic-blue-dim);
+  padding: 0.3rem 0.6rem;
+  text-decoration: none;
+  display: inline-block;
+  width: fit-content;
+  letter-spacing: 0.08em;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.art-btn--cosmic:hover {
+  background: rgba(100, 149, 237, 0.1);
+  box-shadow: 0 0 15px rgba(100, 149, 237, 0.2);
+  transform: translate(-2px, -2px);
+  text-decoration: none;
+  color: var(--cosmic-blue);
+}
+
+/* ── POP card (Street Corner) ── */
+.art-card--pop {
+  background: rgba(15, 13, 8, 0.9);
+  border: 3px solid var(--pop-orange);
+  box-shadow:
+    6px 6px 0 rgba(232, 105, 30, 0.3),
+    12px 12px 0 rgba(26, 58, 107, 0.2);
+}
+
+.art-card--pop:hover {
+  transform: translate(-4px, -4px);
+  box-shadow:
+    10px 10px 0 rgba(232, 105, 30, 0.4),
+    20px 20px 0 rgba(26, 58, 107, 0.25);
+}
+
+.art-card-title--pop {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  color: var(--pop-orange) !important;
+  font-style: normal;
+}
+
+.art-card-icon--pop {
+  color: var(--pop-orange);
+}
+
+.art-award--pop {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.06em;
+  color: var(--pop-orange);
+  border-left: 2px solid var(--pop-orange);
+  padding-left: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.art-btn--pop {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--pop-orange);
+  border: 2px solid var(--pop-orange);
+  padding: 0.3rem 0.6rem;
+  text-decoration: none;
+  display: inline-block;
+  width: fit-content;
+  letter-spacing: 0.08em;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+
+.art-btn--pop:hover {
+  background: var(--pop-orange);
+  color: #000;
+  transform: translate(-2px, -2px);
+  text-decoration: none;
+}
+
+/* ── INK card (Life After-Effects) ── */
+.art-card--ink {
+  background: rgba(13, 12, 10, 0.9);
+  border: 1px solid rgba(247, 243, 237, 0.12);
+  /* Ink offset frame — like the work-ink frame in art portfolio */
+  box-shadow:
+    0 0 0 1px rgba(247, 243, 237, 0.08),
+    8px 8px 0 rgba(247, 243, 237, 0.06),
+    16px 16px 0 rgba(247, 243, 237, 0.03);
+  border-left: 2px solid rgba(247, 243, 237, 0.2);
+}
+
+.art-card--ink:hover {
+  transform: translate(-4px, -4px);
+  box-shadow:
+    0 0 0 1px rgba(247, 243, 237, 0.15),
+    12px 12px 0 rgba(247, 243, 237, 0.08),
+    20px 20px 0 rgba(247, 243, 237, 0.04);
+}
+
+.art-card-title--ink {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #e8e0d0 !important;
+}
+
+.art-card-icon--ink {
+  color: rgba(247, 243, 237, 0.35);
+}
+
+.art-award--ink {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent-silver);
+  border-left: 2px solid var(--accent-silver);
+  padding-left: 0.6rem;
+  margin-top: 0.25rem;
+  letter-spacing: 0.05em;
+}
+
+.art-btn--ink {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: rgba(247, 243, 237, 0.45);
+  border: 1px solid rgba(247, 243, 237, 0.18);
+  padding: 0.3rem 0.6rem;
+  text-decoration: none;
+  display: inline-block;
+  width: fit-content;
+  letter-spacing: 0.08em;
+  transition: border-color 0.2s, color 0.2s, transform 0.2s;
+  border-radius: 4px;
+}
+
+.art-btn--ink:hover {
+  border-color: rgba(247, 243, 237, 0.5);
+  color: var(--text-primary);
+  transform: translate(-2px, -2px);
+  text-decoration: none;
+}
+
+/* ══════════════════════════════════════════════════
+   SKILLS — Ink/Crosshatch (Life After-Effects style)
+   Crosshatch grid, Playfair Display headings,
+   cream offset ink-frame shadows.
+══════════════════════════════════════════════════ */
+#skills {
+  background: #0d0c0a;
+}
+
+/* Crosshatch texture */
+#skills::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      0deg, transparent, transparent 28px,
+      var(--ink-cream-line) 28px, var(--ink-cream-line) 29px
+    ),
+    repeating-linear-gradient(
+      90deg, transparent, transparent 28px,
+      var(--ink-cream-line) 28px, var(--ink-cream-line) 29px
+    );
+  pointer-events: none;
+  z-index: 0;
+}
+
+#skills .section-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: -0.02em;
+  text-shadow: 8px 8px 0 rgba(247,243,237,0.05), 4px 4px 0 rgba(247,243,237,0.07);
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+#skills .section-label {
+  color: rgba(247, 243, 237, 0.35);
+}
+
+.skills-raw {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.skill-col {
+  padding: 1.5rem;
+  background: rgba(13, 12, 10, 0.85);
+  /* Ink offset frame matching Life After-Effects artwork frame */
+  border: 1px solid rgba(247, 243, 237, 0.1);
+  box-shadow:
+    0 0 0 1px rgba(247, 243, 237, 0.06),
+    8px 8px 0 rgba(247, 243, 237, 0.05),
+    16px 16px 0 rgba(247, 243, 237, 0.02);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.skill-col:hover {
+  transform: translate(-4px, -4px);
+  box-shadow:
+    0 0 0 1px rgba(247, 243, 237, 0.12),
+    12px 12px 0 rgba(247, 243, 237, 0.07),
+    20px 20px 0 rgba(247, 243, 237, 0.03);
+}
+
+/* Playfair Display for column headings — ink/serif feel */
+.col-head {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(247, 243, 237, 0.1);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+/* ---------- Contact ---------- */
+#contact {
+  background: var(--bg-void);
+}
+
+.raw-link--gold {
+  color: var(--accent-bright) !important;
+}
+
+.raw-link--gold:hover {
+  color: var(--text-primary) !important;
+}
+
+/* ---------- Footer ---------- */
+.footer {
+  padding: 3rem var(--section-pad-x);
+  border-top: 1px solid var(--line-color);
+}
+
+.footer p {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+}
+
+/* ---------- Scroll Fade Animations ---------- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Desktop Adjustments ---------- */
+@media (min-width: 768px) {
+  :root {
+    --section-pad-x: 3rem;
+  }
+
+  .skills-raw {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .content-wrapper {
+    padding-left: 0;
+  }
+}
