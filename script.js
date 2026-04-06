@@ -1,17 +1,16 @@
 /* ========================================
-   NIGHT SKY PORTFOLIO — Raw/Dial Redesign
-   Starfield · Camera Dial Nav · Observers
+   DYLAN DUAN PORTFOLIO — Atelier Logbook
    ======================================== */
 
 (function () {
     'use strict';
 
-    // ——————— Starfield Canvas (Kept identical for the vibe) ———————
+    // ——————— Starfield Canvas ———————
     const canvas = document.getElementById('starfield');
     const ctx = canvas.getContext('2d');
     let stars = [];
     let shootingStars = [];
-    const STAR_COUNT = 220;
+    const STAR_COUNT = 180;
 
     function resizeCanvas() {
         canvas.width = window.innerWidth;
@@ -22,10 +21,10 @@
         return {
             x: Math.random() * canvas.width,
             y: Math.random() * canvas.height,
-            r: Math.random() * 1.4 + 0.3,
-            alpha: Math.random() * 0.6 + 0.2,
-            alphaDir: (Math.random() - 0.5) * 0.008,
-            drift: (Math.random() - 0.5) * 0.08,
+            r: Math.random() * 1.2 + 0.3,
+            alpha: Math.random() * 0.5 + 0.15,
+            alphaDir: (Math.random() - 0.5) * 0.006,
+            drift: (Math.random() - 0.5) * 0.06,
         };
     }
 
@@ -37,53 +36,32 @@
     }
 
     function createShootingStar() {
-        const side = Math.random();
         return {
-            x: side < 0.5 ? Math.random() * canvas.width : 0,
-            y: side < 0.5 ? 0 : Math.random() * canvas.height * 0.5,
-            len: Math.random() * 60 + 40,
-            speed: Math.random() * 4 + 3,
+            x: Math.random() * canvas.width,
+            y: 0,
+            len: Math.random() * 55 + 35,
+            speed: Math.random() * 3.5 + 2.5,
             alpha: 1,
-            angle: Math.PI / 4 + (Math.random() - 0.5) * 0.3,
+            angle: Math.PI / 4 + (Math.random() - 0.5) * 0.25,
         };
     }
 
     function drawStars() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        const grd = ctx.createRadialGradient(
-            canvas.width * 0.3, canvas.height * 0.5, 0,
-            canvas.width * 0.3, canvas.height * 0.5, canvas.width * 0.6
-        );
-        grd.addColorStop(0, 'rgba(201, 151, 42, 0.04)');
-        grd.addColorStop(0.5, 'rgba(50, 35, 8, 0.02)');
-        grd.addColorStop(1, 'transparent');
-        ctx.fillStyle = grd;
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
         for (const s of stars) {
             s.alpha += s.alphaDir;
-            if (s.alpha >= 0.8 || s.alpha <= 0.15) s.alphaDir *= -1;
+            if (s.alpha >= 0.65 || s.alpha <= 0.1) s.alphaDir *= -1;
             s.y += s.drift;
 
-            if (s.y > canvas.height + 5) {
-                s.y = -5;
-                s.x = Math.random() * canvas.width;
-            } else if (s.y < -5) {
-                s.y = canvas.height + 5;
-                s.x = Math.random() * canvas.width;
-            }
+            if (s.y > canvas.height + 5) { s.y = -5; s.x = Math.random() * canvas.width; }
+            else if (s.y < -5) { s.y = canvas.height + 5; s.x = Math.random() * canvas.width; }
 
-            ctx.fillStyle = `rgba(224, 230, 240, ${s.alpha})`;
-            ctx.fillRect(s.x, s.y, Math.max(1.5, s.r * 2), Math.max(1.5, s.r * 2));
-
-            if (s.r > 1) {
-                ctx.fillStyle = `rgba(129, 140, 248, ${s.alpha * 0.15})`;
-                ctx.fillRect(s.x - s.r, s.y - s.r, s.r * 4, s.r * 4);
-            }
+            ctx.fillStyle = `rgba(220, 226, 238, ${s.alpha})`;
+            ctx.fillRect(s.x, s.y, Math.max(1, s.r * 2), Math.max(1, s.r * 2));
         }
 
-        if (Math.random() < 0.003 && shootingStars.length < 2) {
+        if (Math.random() < 0.002 && shootingStars.length < 2) {
             shootingStars.push(createShootingStar());
         }
 
@@ -94,7 +72,7 @@
 
             ss.x += dx;
             ss.y += dy;
-            ss.alpha -= 0.012;
+            ss.alpha -= 0.014;
 
             if (ss.alpha <= 0 || ss.x > canvas.width + 100 || ss.y > canvas.height + 100) {
                 shootingStars.splice(i, 1);
@@ -103,19 +81,17 @@
 
             const tailX = ss.x - Math.cos(ss.angle) * ss.len;
             const tailY = ss.y - Math.sin(ss.angle) * ss.len;
-
-            // Blocky tail segments
             const segments = 8;
-            for(let j = 0; j < segments; j++) {
-                let px = tailX + (ss.x - tailX) * (j / segments);
-                let py = tailY + (ss.y - tailY) * (j / segments);
-                ctx.fillStyle = `rgba(224, 230, 240, ${ss.alpha * (j / segments)})`;
-                ctx.fillRect(px, py, 2, 2);
+
+            for (let j = 0; j < segments; j++) {
+                const px = tailX + (ss.x - tailX) * (j / segments);
+                const py = tailY + (ss.y - tailY) * (j / segments);
+                ctx.fillStyle = `rgba(220, 226, 238, ${ss.alpha * (j / segments) * 0.7})`;
+                ctx.fillRect(px, py, 1.5, 1.5);
             }
 
-            // Head of shooting star
             ctx.fillStyle = `rgba(255, 255, 255, ${ss.alpha})`;
-            ctx.fillRect(ss.x - 1, ss.y - 1, 4, 4);
+            ctx.fillRect(ss.x - 1, ss.y - 1, 3, 3);
         }
 
         requestAnimationFrame(drawStars);
@@ -124,94 +100,94 @@
     resizeCanvas();
     initStars();
     drawStars();
+    window.addEventListener('resize', () => { resizeCanvas(); initStars(); });
 
-    window.addEventListener('resize', () => {
-        resizeCanvas();
-        initStars();
-    });
-
-    // ——————— Intersection Observer for fade-in ———————
+    // ——————— Fade-in on scroll ———————
     const fadeEls = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver(
+    const fadeObserver = new IntersectionObserver(
         (entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
+                    fadeObserver.unobserve(entry.target);
                 }
             });
         },
-        {
-            threshold: 0.1,
-            rootMargin: '0px 0px -40px 0px',
-        }
+        { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
     );
-    fadeEls.forEach(el => observer.observe(el));
+    fadeEls.forEach(el => fadeObserver.observe(el));
 
-    // ——————— Camera Dial Navigation ———————
-    const dialRing = document.getElementById('dialRing');
-    const dialItems = document.querySelectorAll('.dial-item');
-    const sections = document.querySelectorAll('.section');
+    // ——————— Nav: scroll glass + progress bar ———————
+    const siteNav = document.getElementById('siteNav');
+    const navProgress = document.getElementById('navProgress');
 
-    const TOTAL_ITEMS = dialItems.length;
-    // Angle between each sector on the dial
-    const ANGLE_STEP = 360 / TOTAL_ITEMS;
+    function updateNavOnScroll() {
+        const scrolled = window.scrollY > 60;
+        siteNav.classList.toggle('scrolled', scrolled);
 
-    function rotateDialToIndex(index) {
-        // We want the active item to be at the top position (where angle = -90deg rotation relative to ring, 
-        // but because of how CSS rotates text from right edge (0deg), we need to offset it to align with indicator)
-
-        // Default: item 0 has --angle: 0deg. Indicator is at top (-90deg in unit circle). 
-        // To move item 0 to top, rotate ring by -90deg.
-        // To move item index to top, rotate ring by -90 - (index * ANGLE_STEP).
-        // Plus rotation direction logic so it takes shortest path:
-
-        const targetRotation = -90 - (index * ANGLE_STEP);
-        dialRing.style.transform = `translate(-50%, -50%) rotate(${targetRotation}deg)`;
-
-        // Update active classes
-        dialItems.forEach((item, i) => {
-            if (i === index) item.classList.add('active');
-            else item.classList.remove('active');
-        });
+        // Progress bar: fill based on scroll position through page
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? (window.scrollY / docHeight) * 100 : 0;
+        navProgress.style.width = pct + '%';
     }
 
-    // Click on dial items
-    dialItems.forEach((item) => {
-        item.addEventListener('click', (e) => {
-            const targetId = e.currentTarget.getAttribute('data-target');
-            const targetSection = document.getElementById(targetId);
-            if (targetSection) {
-                window.scrollTo({
-                    top: targetSection.offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
+    window.addEventListener('scroll', updateNavOnScroll, { passive: true });
+    updateNavOnScroll();
 
-    // Scroll spy to update dial
+    // ——————— Nav: active section scroll spy ———————
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
+
     const navObserver = new IntersectionObserver(
         (entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const id = entry.target.id;
-                    const index = Array.from(dialItems).findIndex(item => item.getAttribute('data-target') === id);
-                    if (index !== -1) {
-                        rotateDialToIndex(index);
-                    }
+                    navLinks.forEach(link => {
+                        const isActive = link.getAttribute('data-target') === id;
+                        link.classList.toggle('active', isActive);
+                    });
                 }
             });
         },
-        {
-            // Trigger when section hits middle of screen
-            rootMargin: "-20% 0px -70% 0px"
-        }
+        { rootMargin: '-25% 0px -65% 0px' }
     );
 
     sections.forEach(section => navObserver.observe(section));
 
-    // Initialize at 0
-    rotateDialToIndex(0);
+    // ——————— Nav: smooth scroll on link click ———————
+    document.querySelectorAll('.nav-link, .nav-overlay-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('data-target');
+            const target = document.getElementById(targetId);
+            if (target) {
+                const navHeight = siteNav.offsetHeight;
+                const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+            // Close overlay if open
+            navOverlay.classList.remove('open');
+        });
+    });
+
+    // Logo → scroll to top
+    document.querySelector('.nav-logo').addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ——————— Mobile menu ———————
+    const navBurger = document.getElementById('navBurger');
+    const navOverlay = document.getElementById('navOverlay');
+    const navClose = document.getElementById('navClose');
+
+    navBurger.addEventListener('click', () => navOverlay.classList.add('open'));
+    navClose.addEventListener('click', () => navOverlay.classList.remove('open'));
+
+    // Close overlay on backdrop click
+    navOverlay.addEventListener('click', (e) => {
+        if (e.target === navOverlay) navOverlay.classList.remove('open');
+    });
 
 })();

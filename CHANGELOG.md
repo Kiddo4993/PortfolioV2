@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented here.
 
+## [2026-04-06 05:11:00] - Tone Rewrite
+### Changed
+- Completely rewrote website copy across all sections (About, Projects, Art, Contact) to sound more casual, human, and rugged.
+- Removed AI-sounding corporate phrases to better match the raw, pixelated aesthetic.
+
 ## [2026-04-01 13:05:00] - Retro Pixelated Theme Update
 ### Added
 - "Pixelated" aesthetic across the entire application using the `VT323` font.
