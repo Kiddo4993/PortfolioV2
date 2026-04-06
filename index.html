@@ -9,7 +9,7 @@
         content="Portfolio of Dylan Duan — high school software engineer & award-winning artist. Gold Medal, Louvre 2026. Python, Java, C++, Next.js, Swift." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;1,300;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 </head>
@@ -19,39 +19,62 @@
     <!-- Starfield Canvas -->
     <canvas id="starfield"></canvas>
 
-    <!-- Camera Dial Navigation -->
-    <div class="dial-container" id="dialNav">
-        <div class="dial-lens">
-            <div class="dial-center"></div>
-            <div class="dial-ring" id="dialRing">
-                <div class="dial-item active" data-target="hero"     style="--angle: 0deg;">  Hero   </div>
-                <div class="dial-item"         data-target="about"   style="--angle: 60deg;"> About  </div>
-                <div class="dial-item"         data-target="projects" style="--angle: 120deg;">Code   </div>
-                <div class="dial-item"         data-target="art"     style="--angle: 180deg;">Art    </div>
-                <div class="dial-item"         data-target="skills"  style="--angle: 240deg;">Skills </div>
-                <div class="dial-item"         data-target="contact" style="--angle: 300deg;">Contact</div>
-            </div>
-            <div class="dial-indicator"></div>
-        </div>
+    <!-- Atelier Index Navigation -->
+    <nav class="site-nav" id="siteNav">
+        <a href="#hero" class="nav-logo">Dylan Duan</a>
+        <div class="nav-progress" id="navProgress"></div>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about"    class="nav-link" data-target="about">   <span class="nav-num">01</span><span class="nav-label">About</span>   </a></li>
+            <li><a href="#projects" class="nav-link" data-target="projects"><span class="nav-num">02</span><span class="nav-label">Work</span>    </a></li>
+            <li><a href="#art"      class="nav-link" data-target="art">     <span class="nav-num">03</span><span class="nav-label">Art</span>     </a></li>
+            <li><a href="#skills"   class="nav-link" data-target="skills">  <span class="nav-num">04</span><span class="nav-label">Skills</span>  </a></li>
+            <li><a href="#contact"  class="nav-link" data-target="contact"> <span class="nav-num">05</span><span class="nav-label">Contact</span> </a></li>
+        </ul>
+        <button class="nav-burger" id="navBurger" aria-label="Open menu">
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile overlay -->
+    <div class="nav-overlay" id="navOverlay">
+        <button class="nav-overlay-close" id="navClose" aria-label="Close menu">&#215;</button>
+        <ul class="nav-overlay-links">
+            <li><a href="#about"    class="nav-overlay-link" data-target="about">   <span>01</span> About   </a></li>
+            <li><a href="#projects" class="nav-overlay-link" data-target="projects"><span>02</span> Work    </a></li>
+            <li><a href="#art"      class="nav-overlay-link" data-target="art">     <span>03</span> Art     </a></li>
+            <li><a href="#skills"   class="nav-overlay-link" data-target="skills">  <span>04</span> Skills  </a></li>
+            <li><a href="#contact"  class="nav-overlay-link" data-target="contact"> <span>05</span> Contact </a></li>
+        </ul>
     </div>
 
     <div class="content-wrapper">
 
         <!-- ===== HERO ===== -->
         <section class="section hero" id="hero">
-            <div class="section-inner">
-                <p class="hero-greeting">// init__</p>
-                <h1 class="hero-name">Dylan <em>Duan</em></h1>
-                <h2 class="hero-title">Software Engineer <span class="hero-amp">&amp;</span> Artist</h2>
-                <p class="hero-tagline">
-                    > I build apps, web platforms, and AI bots.<br>
-                    > Obsessed with hackathons, competitive programming, and VEX Robotics.<br>
-                    > <span class="hero-tagline-medal">Gold Medal — Carrousel du Louvre, Paris 2026.</span>
-                </p>
-                <div class="hero-social">
-                    <a href="https://github.com/Kiddo4993" target="_blank" rel="noopener" class="social-pill">[GH]</a>
-                    <a href="https://www.instagram.com/dylan_duan2010/" target="_blank" rel="noopener" class="social-pill">[IG]</a>
-                    <a href="https://art-portfolio.dylanduan2010.dev/" target="_blank" rel="noopener" class="social-pill">[ART]</a>
+            <div class="hero-inner">
+                <div class="hero-left fade-in">
+                    <p class="hero-eyebrow">Software Engineer · Artist</p>
+                    <h1 class="hero-name">Dylan<br><em>Duan</em></h1>
+                    <div class="hero-social">
+                        <a href="https://github.com/Kiddo4993" target="_blank" rel="noopener" class="hero-arrow-link">GitHub <span class="arrow">→</span></a>
+                        <a href="https://www.instagram.com/dylan_duan2010/" target="_blank" rel="noopener" class="hero-arrow-link">Instagram <span class="arrow">→</span></a>
+                        <a href="https://art-portfolio.dylanduan2010.dev/" target="_blank" rel="noopener" class="hero-arrow-link">Art Portfolio <span class="arrow">→</span></a>
+                    </div>
+                </div>
+
+                <div class="hero-rule"></div>
+
+                <div class="hero-right fade-in">
+                    <div class="hero-award">
+                        <p class="award-label">Médaille d'Or</p>
+                        <p class="award-event">Carrousel du Louvre<br>Paris · January 2026</p>
+                    </div>
+                    <div class="hero-awards-minor">
+                        <p>★ Silver Award — CICAF Toronto · 2025</p>
+                        <p>★ Silver Award — CICAF Toronto · 2024</p>
+                    </div>
+                    <p class="hero-tagline">I build apps, web platforms, and AI tools.<br>Obsessed with hackathons and VEX Robotics.</p>
                 </div>
             </div>
         </section>
@@ -64,26 +87,26 @@
                     <h2 class="section-title">Who I Am</h2>
                 </div>
 
-                <div class="about-content">
-                    <p class="raw-text">
-                        I'm a <strong>high schooler</strong> and self-taught programmer. I started out messing around with
-                        Python and Java, but lately I've been getting super into full-stack web dev, iOS apps, and
-                        building things with AI.
-                    </p>
-                    <p class="raw-text">
-                        I'm pretty active in <strong>VEX Robotics</strong> (Team 77174A "Holy Airball!"), where I built
-                        SparkVEX to help pick alliances using Bayesian stats. When I'm not coding, I make
-                        <strong>ink, gouache, and mixed-media art</strong>. I've somehow managed to win a few awards doing
-                        that at the Louvre and CICAF Toronto.
-                    </p>
+                <div class="about-editorial">
+                    <div class="about-pull">
+                        <p class="pull-quote">Mostly learned to code by breaking stuff until it worked.</p>
+                    </div>
+                    <div class="about-body">
+                        <p class="about-text">
+                            Started out making basic scripts in Python and Java, but lately I just spend my time building full web apps, iOS stuff, and wiring up AI APIs.
+                        </p>
+                        <p class="about-text">
+                            Huge nerd for <strong>VEX Robotics</strong> (Team 77174A "Holy Airball!"). I built an app called SparkVEX that uses actual Bayesian math to pick our alliances. Off the screen, I do a lot of <strong>ink and gouache art</strong>. Somehow finessed my way into showing my pieces at the Louvre in Paris and CICAF Toronto.
+                        </p>
 
-                    <ul class="raw-list about-list mt-2">
-                        <li>> Robotics (VEX competitor &amp; alliance strategist)</li>
-                        <li>> CTF &amp; Hacking (Capture the Flag enthusiast)</li>
-                        <li>> Hackathons (Building under pressure, fast)</li>
-                        <li>> Mobile Dev (Swift &amp; cross-platform apps)</li>
-                        <li class="warm-li">> Art (Ink · Gouache · Mixed Media — Gold Medal, Louvre 2026)</li>
-                    </ul>
+                        <ul class="about-list">
+                            <li>Robotics — VEX competitor & alliance strategist</li>
+                            <li>CTF & Hacking — Capture the Flag enthusiast</li>
+                            <li>Hackathons — Building under pressure, fast</li>
+                            <li>Mobile Dev — Swift & cross-platform apps</li>
+                            <li class="about-list-gold">Art — Ink · Gouache · Mixed Media</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
@@ -98,76 +121,90 @@
 
                 <div class="projects-list">
 
-                    <div class="project-row fade-in">
-                        <div class="row-header">
-                            <h3 class="row-title">SparkVEX</h3>
-                            <div class="row-links">
-                                <a href="https://github.com/Kiddo4993/Spark-Vex-App" target="_blank" rel="noopener">[SRC]</a>
-                                <a href="https://spark-vex-app.vercel.app" target="_blank" rel="noopener">[LIVE]</a>
+                    <div class="project-entry fade-in">
+                        <div class="project-num">01</div>
+                        <div class="project-body">
+                            <div class="project-title-row">
+                                <h3 class="project-name">SparkVEX</h3>
+                                <div class="project-links">
+                                    <a href="https://github.com/Kiddo4993/Spark-Vex-App" target="_blank" rel="noopener">[SRC]</a>
+                                    <a href="https://spark-vex-app.vercel.app" target="_blank" rel="noopener">[LIVE]</a>
+                                </div>
                             </div>
+                            <hr class="project-rule">
+                            <p class="project-desc">
+                                A VEX Robotics scouting app because I was tired of bad alliance picks. I literally shoved a Bayesian probability model into it to rate teams based on actual performance instead of just raw points. Built-in chat, task boards, and data scraping too.
+                            </p>
+                            <p class="project-tags">Next.js · TypeScript · PostgreSQL · Prisma · NextAuth</p>
                         </div>
-                        <p class="raw-text">
-                            A scouting app for VEX Robotics. It uses a custom Bayesian model to rate teams on how well they 
-                            perform, who they play against, and what they actually contribute to a match. Also has live chat, 
-                            data imports, and a task board.
-                        </p>
-                        <p class="raw-tags">Next.js · TypeScript · PostgreSQL · Prisma · NextAuth</p>
                     </div>
 
-                    <div class="project-row fade-in">
-                        <div class="row-header">
-                            <h3 class="row-title">SaintThunderBird Tutoring</h3>
-                            <div class="row-links">
-                                <a href="https://github.com/Kiddo4993/SaintThunderBirdTutoring" target="_blank" rel="noopener">[SRC]</a>
+                    <div class="project-entry fade-in">
+                        <div class="project-num">02</div>
+                        <div class="project-body">
+                            <div class="project-title-row">
+                                <h3 class="project-name">SaintThunderBird Tutoring</h3>
+                                <div class="project-links">
+                                    <a href="https://github.com/Kiddo4993/SaintThunderBirdTutoring" target="_blank" rel="noopener">[SRC]</a>
+                                </div>
                             </div>
+                            <hr class="project-rule">
+                            <p class="project-desc">
+                                Built this from scratch to get First Nations students free tutoring. Coded the student and tutor dashboards myself, wired it up to auto-generate Zoom links, and made a whole admin backend to keep things running.
+                            </p>
+                            <p class="project-tags">HTML · JavaScript · Node.js · CSS</p>
                         </div>
-                        <p class="raw-text">
-                            A platform I put together to help give First Nations students free access to tutoring. I built out 
-                            dashboards for students and tutors, hooked up Zoom for live sessions, and set up an admin approval workflow.
-                        </p>
-                        <p class="raw-tags">HTML · JavaScript · Node.js · CSS</p>
                     </div>
 
-                    <div class="project-row fade-in">
-                        <div class="row-header">
-                            <h3 class="row-title">Sanctum</h3>
-                            <div class="row-links">
-                                <a href="https://github.com/Kiddo4993/Sanctum" target="_blank" rel="noopener">[SRC]</a>
+                    <div class="project-entry fade-in">
+                        <div class="project-num">03</div>
+                        <div class="project-body">
+                            <div class="project-title-row">
+                                <h3 class="project-name">Sanctum</h3>
+                                <div class="project-links">
+                                    <a href="https://github.com/Kiddo4993/Sanctum" target="_blank" rel="noopener">[SRC]</a>
+                                </div>
                             </div>
+                            <hr class="project-rule">
+                            <p class="project-desc">
+                                Wanted a Bible app that didn't feel like navigating a spreadsheet, so I made it like a social feed. Hooked up GPT-4o to break down the heavy verses and ElevenLabs so it literally reads to you. Built-in group chats too.
+                            </p>
+                            <p class="project-tags">Swift · Supabase · Firebase · OpenAI · ElevenLabs</p>
                         </div>
-                        <p class="raw-text">
-                            A Bible app designed to feel like a social feed. I used GPT-4o to figure out verse meanings and
-                            ElevenLabs to read them out loud. It's got friends, group chats, and learns what kind of verses you like.
-                        </p>
-                        <p class="raw-tags">Swift · Supabase · Firebase · OpenAI · ElevenLabs</p>
                     </div>
 
-                    <div class="project-row fade-in">
-                        <div class="row-header">
-                            <h3 class="row-title">Discord AI Bot</h3>
-                            <div class="row-links">
-                                <a href="https://github.com/Kiddo4993/Discord-Bot-Imbued-With-AI-Claude-API-" target="_blank" rel="noopener">[SRC]</a>
+                    <div class="project-entry fade-in">
+                        <div class="project-num">04</div>
+                        <div class="project-body">
+                            <div class="project-title-row">
+                                <h3 class="project-name">Discord AI Bot</h3>
+                                <div class="project-links">
+                                    <a href="https://github.com/Kiddo4993/Discord-Bot-Imbued-With-AI-Claude-API-" target="_blank" rel="noopener">[SRC]</a>
+                                </div>
                             </div>
+                            <hr class="project-rule">
+                            <p class="project-desc">
+                                Just a Discord bot wired straight into the Claude API. I wasted a ridiculous amount of time writing the system prompts so it acts like an actual unhinged person instead of a boring AI assistant.
+                            </p>
+                            <p class="project-tags">Python · Discord.py · Claude API</p>
                         </div>
-                        <p class="raw-text">
-                            A custom Discord bot hooked up to the Claude API. I spent way too long tuning its prompts so it 
-                            sounds like it has an actual personality, making server chats way more fun.
-                        </p>
-                        <p class="raw-tags">Python · Discord.py · Claude API</p>
                     </div>
 
-                    <div class="project-row fade-in">
-                        <div class="row-header">
-                            <h3 class="row-title">Clash Royale Deck Manager</h3>
-                            <div class="row-links">
-                                <a href="https://github.com/Kiddo4993/Clash-Royale-Website-with-API-KEYS" target="_blank" rel="noopener">[SRC]</a>
+                    <div class="project-entry fade-in">
+                        <div class="project-num">05</div>
+                        <div class="project-body">
+                            <div class="project-title-row">
+                                <h3 class="project-name">Clash Royale Deck Manager</h3>
+                                <div class="project-links">
+                                    <a href="https://github.com/Kiddo4993/Clash-Royale-Website-with-API-KEYS" target="_blank" rel="noopener">[SRC]</a>
+                                </div>
                             </div>
+                            <hr class="project-rule">
+                            <p class="project-desc">
+                                I play too much Clash Royale so I built a tracker that pulls live game data right from their official API. You can stalk live card stats, track the current meta, and save decks.
+                            </p>
+                            <p class="project-tags">HTML · JavaScript · REST API</p>
                         </div>
-                        <p class="raw-text">
-                            A site that grabs live stats directly from the Clash Royale API. You can look up live card data,
-                            find competitive decks, and save them to your account.
-                        </p>
-                        <p class="raw-tags">HTML · JavaScript · REST API</p>
                     </div>
 
                 </div>
@@ -179,52 +216,54 @@
             <div class="section-inner fade-in">
                 <div class="section-header section-header--art">
                     <p class="section-label section-label--gold">[03] ART</p>
-                    <h2 class="section-title section-title--gold">Creative Work</h2>
+                    <h2 class="section-title section-title--art">Creative Work</h2>
                 </div>
 
                 <p class="art-intro">
-                    I mostly draw with ink, gouache, and mixed media. My stuff ranges from heavy black-and-white drawings 
-                    to colorful gouache pieces. I've been lucky enough to show my work at the Louvre and CICAF Toronto.
+                    I do physical art — no AI, no digital layers. Just ink, gouache, and getting messy. Still wild to me that these hung in the Louvre.
                 </p>
 
-                <div class="art-grid fade-in">
+                <div class="art-entries">
 
-                    <!-- COSMIC style — Recurrence -->
-                    <div class="art-card art-card--cosmic">
-                        <div class="art-card-icon art-card-icon--cosmic">✦</div>
-                        <div class="art-card-body">
-                            <h3 class="art-card-title">Recurrence Between Two Best Friends</h3>
-                            <p class="raw-text">White ink &amp; gouache on black paper. A cosmic wolf of constellation
-                                lines facing a solitary figure.</p>
+                    <!-- COSMIC — Recurrence -->
+                    <div class="art-entry art-entry--cosmic fade-in">
+                        <div class="art-entry-visual art-entry-visual--cosmic">
+                            <span class="art-glyph">✦</span>
+                        </div>
+                        <div class="art-entry-body">
+                            <h3 class="art-entry-title">Recurrence Between Two Best Friends</h3>
+                            <p class="art-entry-medium">White ink &amp; gouache on black paper</p>
+                            <p class="art-entry-desc">A giant cosmic wolf made out of constellation lines staring down some tiny guy.</p>
                             <p class="art-award art-award--gold-foil">✦ Médaille d'Or — Carrousel du Louvre, Paris · Jan 2026</p>
-                            <a href="https://art-portfolio.dylanduan2010.dev/" target="_blank" rel="noopener"
-                                class="art-btn art-btn--cosmic">[VIEW PORTFOLIO]</a>
+                            <a href="https://art-portfolio.dylanduan2010.dev/" target="_blank" rel="noopener" class="art-link art-link--cosmic">View Portfolio →</a>
                         </div>
                     </div>
 
-                    <!-- POP style — Street Corner -->
-                    <div class="art-card art-card--pop">
-                        <div class="art-card-icon art-card-icon--pop">◈</div>
-                        <div class="art-card-body">
-                            <h3 class="art-card-title art-card-title--pop">Street Corner</h3>
-                            <p class="raw-text">Gouache &amp; acrylic on canvas. Just a chaotic, busy city scene grabbing
-                                the vibe of the street at dusk.</p>
+                    <!-- POP — Street Corner -->
+                    <div class="art-entry art-entry--pop fade-in">
+                        <div class="art-entry-visual art-entry-visual--pop">
+                            <span class="art-glyph">◈</span>
+                        </div>
+                        <div class="art-entry-body">
+                            <h3 class="art-entry-title art-entry-title--pop">Street Corner</h3>
+                            <p class="art-entry-medium">Gouache &amp; acrylic on canvas</p>
+                            <p class="art-entry-desc">Just a really chaotic, crowded city street at dusk doing its thing.</p>
                             <p class="art-award art-award--pop">★ Silver Award — CICAF Toronto · Aug 2025</p>
-                            <a href="https://www.instagram.com/dylan_duan2010/" target="_blank" rel="noopener"
-                                class="art-btn art-btn--pop">[FOLLOW @dylan_duan2010]</a>
+                            <a href="https://www.instagram.com/dylan_duan2010/" target="_blank" rel="noopener" class="art-link art-link--pop">Follow @dylan_duan2010 →</a>
                         </div>
                     </div>
 
-                    <!-- INK style — Life After-Effects -->
-                    <div class="art-card art-card--ink">
-                        <div class="art-card-icon art-card-icon--ink">▲</div>
-                        <div class="art-card-body">
-                            <h3 class="art-card-title art-card-title--ink">Life After-Effects</h3>
-                            <p class="raw-text">Pen &amp; ink, straight onto the paper with no underdrawing. Giant sky
-                                figures coming down to a chaotic world.</p>
-                            <p class="art-award art-award--ink">🥈 Silver Award — CICAF Toronto · Aug 2024</p>
-                            <a href="https://github.com/Kiddo4993" target="_blank" rel="noopener"
-                                class="art-btn art-btn--ink">[GITHUB/KIDDO4993]</a>
+                    <!-- INK — Life After-Effects -->
+                    <div class="art-entry art-entry--ink fade-in">
+                        <div class="art-entry-visual art-entry-visual--ink">
+                            <span class="art-glyph">▲</span>
+                        </div>
+                        <div class="art-entry-body">
+                            <h3 class="art-entry-title art-entry-title--ink">Life After-Effects</h3>
+                            <p class="art-entry-medium">Pen &amp; ink, direct on paper</p>
+                            <p class="art-entry-desc">Huge figures dropping out of the sky onto a wrecked city. No pencil sketch first — straight ink.</p>
+                            <p class="art-award art-award--ink">★ Silver Award — CICAF Toronto · Aug 2024</p>
+                            <a href="https://github.com/Kiddo4993" target="_blank" rel="noopener" class="art-link art-link--ink">GitHub/Kiddo4993 →</a>
                         </div>
                     </div>
 
@@ -240,10 +279,11 @@
                     <h2 class="section-title">Tech Stack</h2>
                 </div>
 
-                <div class="skills-raw">
+                <div class="skills-table">
                     <div class="skill-col">
-                        <p class="col-head">// Languages</p>
-                        <ul class="raw-list">
+                        <p class="col-head">Languages</p>
+                        <hr class="col-rule">
+                        <ul class="skill-list">
                             <li>Python</li>
                             <li>Java</li>
                             <li>C++</li>
@@ -256,8 +296,9 @@
                     </div>
 
                     <div class="skill-col">
-                        <p class="col-head">// Frameworks</p>
-                        <ul class="raw-list">
+                        <p class="col-head">Frameworks</p>
+                        <hr class="col-rule">
+                        <ul class="skill-list">
                             <li>Next.js</li>
                             <li>React</li>
                             <li>Node.js</li>
@@ -269,8 +310,9 @@
                     </div>
 
                     <div class="skill-col">
-                        <p class="col-head">// Tools & DBs</p>
-                        <ul class="raw-list">
+                        <p class="col-head">Tools &amp; DBs</p>
+                        <hr class="col-rule">
+                        <ul class="skill-list">
                             <li>Git / GitHub</li>
                             <li>PostgreSQL</li>
                             <li>Supabase</li>
@@ -292,16 +334,15 @@
                     <h2 class="section-title">Get In Touch</h2>
                 </div>
 
-                <div class="contact-raw">
-                    <p class="raw-text">
-                        Always down to collab, build something cool together, or honestly just chat about
-                        tech and art. Hit me up.
+                <div class="contact-body">
+                    <p class="contact-line">
+                        If you want to build something stupidly cool, team up for a hackathon, or literally just talk about code and art — shoot me a message.
                     </p>
-                    <ul class="raw-list mt-2">
-                        <li>> <a href="mailto:dylanduancanada@gmail.com" class="raw-link">dylanduancanada@gmail.com</a></li>
-                        <li>> <a href="https://github.com/Kiddo4993" target="_blank" rel="noopener" class="raw-link">github.com/Kiddo4993</a></li>
-                        <li class="warm-li">> <a href="https://www.instagram.com/dylan_duan2010/" target="_blank" rel="noopener" class="raw-link raw-link--gold">instagram.com/dylan_duan2010</a></li>
-                        <li class="warm-li">> <a href="https://art-portfolio.dylanduan2010.dev/" target="_blank" rel="noopener" class="raw-link raw-link--gold">art-portfolio.dylanduan2010.dev</a></li>
+                    <ul class="contact-list">
+                        <li><a href="mailto:dylanduancanada@gmail.com" class="contact-link">dylanduancanada@gmail.com <span class="arrow">→</span></a></li>
+                        <li><a href="https://github.com/Kiddo4993" target="_blank" rel="noopener" class="contact-link">github.com/Kiddo4993 <span class="arrow">→</span></a></li>
+                        <li><a href="https://www.instagram.com/dylan_duan2010/" target="_blank" rel="noopener" class="contact-link contact-link--gold">instagram.com/dylan_duan2010 <span class="arrow">→</span></a></li>
+                        <li><a href="https://art-portfolio.dylanduan2010.dev/" target="_blank" rel="noopener" class="contact-link contact-link--gold">art-portfolio.dylanduan2010.dev <span class="arrow">→</span></a></li>
                     </ul>
                 </div>
             </div>
@@ -309,7 +350,7 @@
 
         <!-- ===== FOOTER ===== -->
         <footer class="footer">
-            <p>EOF. Designed & built by Dylan Duan · © 2026</p>
+            <p>EOF. Designed &amp; built by Dylan Duan · © 2026</p>
         </footer>
     </div>
 
