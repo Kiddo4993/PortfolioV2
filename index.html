@@ -9,7 +9,7 @@
         content="Portfolio of Dylan Duan — high school software engineer & award-winning artist. Gold Medal, Louvre 2026. Python, Java, C++, Next.js, Swift." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 </head>
@@ -71,10 +71,11 @@
                         <p class="award-event">Carrousel du Louvre<br>Paris · January 2026</p>
                     </div>
                     <div class="hero-awards-minor">
-                        <p>★ Silver Award — CICAF Toronto · 2025</p>
-                        <p>★ Silver Award — CICAF Toronto · 2024</p>
+                        <p><span class="star-icon">✦</span> Silver Award — CICAF Toronto · 2025</p>
+                        <p><span class="star-icon">✦</span> Silver Award — CICAF Toronto · 2024</p>
                     </div>
                     <p class="hero-tagline">I build apps, web platforms, and AI tools.<br>Obsessed with hackathons and VEX Robotics.</p>
+                    <span class="margin-note hero-note">* Yes, physical canvas art. No prompts, just getting messy with ink.</span>
                 </div>
             </div>
         </section>
@@ -83,13 +84,14 @@
         <section class="section" id="about">
             <div class="section-inner fade-in">
                 <div class="section-header">
-                    <p class="section-label">[01] ABOUT</p>
+                    <p class="section-label">01 / ABOUT</p>
                     <h2 class="section-title">Who I Am</h2>
                 </div>
 
                 <div class="about-editorial">
                     <div class="about-pull">
                         <p class="pull-quote">Mostly learned to code by breaking stuff until it worked.</p>
+                        <span class="margin-note about-note">* Team 77174A "Holy Airball!" — still trying to make autonomous work.</span>
                     </div>
                     <div class="about-body">
                         <p class="about-text">
@@ -115,98 +117,248 @@
         <section class="section" id="projects">
             <div class="section-inner fade-in">
                 <div class="section-header">
-                    <p class="section-label">[02] CODE</p>
+                    <p class="section-label">02 / WORK</p>
                     <h2 class="section-title">Featured Work</h2>
                 </div>
 
-                <div class="projects-list">
+                <p class="projects-intro">Shipping fast, breaking things, building them back better. Here's the stuff I'm most proud of — pulled live from my GitHub.</p>
 
-                    <div class="project-entry fade-in">
-                        <div class="project-num">01</div>
-                        <div class="project-body">
-                            <div class="project-title-row">
-                                <h3 class="project-name">SparkVEX</h3>
-                                <div class="project-links">
-                                    <a href="https://github.com/Kiddo4993/Spark-Vex-App" target="_blank" rel="noopener">[SRC]</a>
-                                    <a href="https://spark-vex-app.vercel.app" target="_blank" rel="noopener">[LIVE]</a>
-                                </div>
+                <!-- Featured / Hero Project -->
+                <div class="project-featured fade-in" id="projectFeatured">
+                    <div class="project-featured-glow"></div>
+                    <div class="project-featured-inner">
+                        <div class="project-featured-badge">✦ FLAGSHIP</div>
+                        <div class="project-featured-content">
+                            <div class="project-featured-left">
+                                <h3 class="project-featured-name">SparkVEX</h3>
+                                <p class="project-featured-desc">
+                                    Production-ready VEX Robotics scouting platform. Bayesian probability model for alliance picks, chess-style ELO ratings with uncertainty, skills rankings, real-time team chat, task boards, and live data scraping from competition feeds.
+                                </p>
+                                <p class="project-featured-tags">
+                                    <span class="tag-pill tag-pill--ts">TypeScript</span>
+                                    <span class="tag-pill tag-pill--next">Next.js</span>
+                                    <span class="tag-pill tag-pill--db">PostgreSQL</span>
+                                    <span class="tag-pill tag-pill--tool">Prisma</span>
+                                    <span class="tag-pill tag-pill--tool">NextAuth</span>
+                                </p>
                             </div>
-                            <hr class="project-rule">
-                            <p class="project-desc">
-                                A VEX Robotics scouting app because I was tired of bad alliance picks. I literally shoved a Bayesian probability model into it to rate teams based on actual performance instead of just raw points. Built-in chat, task boards, and data scraping too.
-                            </p>
-                            <p class="project-tags">Next.js · TypeScript · PostgreSQL · Prisma · NextAuth</p>
+                            <div class="project-featured-right">
+                                <div class="project-featured-stats">
+                                    <div class="pf-stat">
+                                        <div class="pf-stat-val-container">
+                                            <svg class="icon-git icon-git--star" viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97 1.937 4.19a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l1.936-4.189-3.046-2.97a.75.75 0 0 1 .415-1.279l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg>
+                                            <span class="pf-stat-num" data-repo="Spark-Vex-App" data-field="stargazers_count">1</span>
+                                        </div>
+                                        <span class="pf-stat-label">Stars</span>
+                                    </div>
+                                    <div class="pf-stat">
+                                        <div class="pf-stat-val-container">
+                                            <svg class="icon-git icon-git--fork" viewBox="0 0 16 16" width="14" height="14" fill="currentColor"><path d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v4.256a2.251 2.251 0 1 0 1.5 0V5.372Zm8 3.128a2.251 2.251 0 1 0-1.5 0v-4.256a2.251 2.251 0 1 0-1.5 0v4.256Zm-1.5-5.378a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-10.5 7.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm10.5 0a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"></path></svg>
+                                            <span class="pf-stat-num" data-repo="Spark-Vex-App" data-field="forks_count">0</span>
+                                        </div>
+                                        <span class="pf-stat-label">Forks</span>
+                                    </div>
+                                    <div class="pf-stat">
+                                        <div class="pf-stat-val-container">
+                                            <span class="pf-stat-num">1.5K</span>
+                                        </div>
+                                        <span class="pf-stat-label">Lines</span>
+                                    </div>
+                                </div>
+                                <div class="project-featured-links">
+                                    <a href="https://spark-vex-app.vercel.app" target="_blank" rel="noopener" class="pf-link pf-link--live">
+                                        <span class="pf-link-dot"></span> Live Demo
+                                    </a>
+                                    <a href="https://github.com/Kiddo4993/Spark-Vex-App" target="_blank" rel="noopener" class="pf-link pf-link--src">
+                                        View Source →
+                                    </a>
+                                </div>
+                                <span class="margin-note project-note">* SparkVEX predicted our rank within 2% margin.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Grid -->
+                <div class="projects-grid">
+
+                    <div class="project-card fade-in" id="projectLineage">
+                        <div class="project-card-glow project-card-glow--ts"></div>
+                        <div class="project-card-header">
+                            <span class="project-card-num">01</span>
+                            <span class="project-card-lang">
+                                <span class="lang-dot lang-dot--ts"></span>TypeScript
+                            </span>
+                        </div>
+                        <h3 class="project-card-name">Lineage</h3>
+                        <p class="project-card-desc">An art-focused creative app — my newest project. Built for artists who want a clean, distraction-free environment to showcase and organize their work.</p>
+                        <div class="project-card-tags">
+                            <span>TypeScript</span><span>React</span><span>Art Platform</span>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="https://github.com/Kiddo4993/Lineage" target="_blank" rel="noopener" class="pc-link">Source →</a>
+                            <div class="project-card-stats" data-repo="Lineage">
+                                <span class="pc-stat-item">
+                                    <svg class="icon-git icon-git--star" viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97 1.937 4.19a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l1.936-4.189-3.046-2.97a.75.75 0 0 1 .415-1.279l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg>
+                                    <span class="pc-stat" data-field="stargazers_count">0</span>
+                                </span>
+                                <span class="pc-stat-item">
+                                    <svg class="icon-git icon-git--fork" viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v4.256a2.251 2.251 0 1 0 1.5 0V5.372Zm8 3.128a2.251 2.251 0 1 0-1.5 0v-4.256a2.251 2.251 0 1 0-1.5 0v4.256Zm-1.5-5.378a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-10.5 7.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm10.5 0a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"></path></svg>
+                                    <span class="pc-stat" data-field="forks_count">0</span>
+                                </span>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="project-entry fade-in">
-                        <div class="project-num">02</div>
-                        <div class="project-body">
-                            <div class="project-title-row">
-                                <h3 class="project-name">SaintThunderBird Tutoring</h3>
-                                <div class="project-links">
-                                    <a href="https://github.com/Kiddo4993/SaintThunderBirdTutoring" target="_blank" rel="noopener">[SRC]</a>
-                                </div>
+                    <div class="project-card fade-in" id="projectTutoring">
+                        <div class="project-card-glow project-card-glow--js"></div>
+                        <div class="project-card-header">
+                            <span class="project-card-num">02</span>
+                            <span class="project-card-lang">
+                                <span class="lang-dot lang-dot--js"></span>JavaScript
+                            </span>
+                        </div>
+                        <h3 class="project-card-name">SaintThunderBird</h3>
+                        <p class="project-card-desc">Non-profit tutoring platform for First Nations students. Student & tutor dashboards, auto-generated Zoom links, and a full admin backend — all built from scratch.</p>
+                        <div class="project-card-tags">
+                            <span>Node.js</span><span>JavaScript</span><span>Zoom API</span>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="https://saint-thunder-bird-tutoring-xi.vercel.app" target="_blank" rel="noopener" class="pc-link pc-link--live"><span class="pf-link-dot"></span> Live</a>
+                            <a href="https://github.com/Kiddo4993/SaintThunderBirdTutoring" target="_blank" rel="noopener" class="pc-link">Source →</a>
+                            <div class="project-card-stats" data-repo="SaintThunderBirdTutoring">
+                                <span class="pc-stat-item">
+                                    <svg class="icon-git icon-git--star" viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97 1.937 4.19a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l1.936-4.189-3.046-2.97a.75.75 0 0 1 .415-1.279l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg>
+                                    <span class="pc-stat" data-field="stargazers_count">0</span>
+                                </span>
+                                <span class="pc-stat-item">
+                                    <svg class="icon-git icon-git--fork" viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v4.256a2.251 2.251 0 1 0 1.5 0V5.372Zm8 3.128a2.251 2.251 0 1 0-1.5 0v-4.256a2.251 2.251 0 1 0-1.5 0v4.256Zm-1.5-5.378a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-10.5 7.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm10.5 0a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"></path></svg>
+                                    <span class="pc-stat" data-field="forks_count">0</span>
+                                </span>
                             </div>
-                            <hr class="project-rule">
-                            <p class="project-desc">
-                                Built this from scratch to get First Nations students free tutoring. Coded the student and tutor dashboards myself, wired it up to auto-generate Zoom links, and made a whole admin backend to keep things running.
-                            </p>
-                            <p class="project-tags">HTML · JavaScript · Node.js · CSS</p>
                         </div>
                     </div>
 
-                    <div class="project-entry fade-in">
-                        <div class="project-num">03</div>
-                        <div class="project-body">
-                            <div class="project-title-row">
-                                <h3 class="project-name">Sanctum</h3>
-                                <div class="project-links">
-                                    <a href="https://github.com/Kiddo4993/Sanctum" target="_blank" rel="noopener">[SRC]</a>
-                                </div>
+                    <div class="project-card fade-in" id="projectSanctum">
+                        <div class="project-card-glow project-card-glow--swift"></div>
+                        <div class="project-card-header">
+                            <span class="project-card-num">03</span>
+                            <span class="project-card-lang">
+                                <span class="lang-dot lang-dot--swift"></span>Swift
+                            </span>
+                        </div>
+                        <h3 class="project-card-name">Sanctum</h3>
+                        <p class="project-card-desc">Bible app that actually feels good to use. Social-feed UX, GPT-4o verse breakdowns, ElevenLabs audio narration, and built-in group chats.</p>
+                        <div class="project-card-tags">
+                            <span>Swift</span><span>Supabase</span><span>OpenAI</span><span>ElevenLabs</span>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="https://github.com/Kiddo4993/Sanctum" target="_blank" rel="noopener" class="pc-link">Source →</a>
+                            <div class="project-card-stats" data-repo="Sanctum">
+                                <span class="pc-stat-item">
+                                    <svg class="icon-git icon-git--star" viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97 1.937 4.19a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l1.936-4.189-3.046-2.97a.75.75 0 0 1 .415-1.279l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg>
+                                    <span class="pc-stat" data-field="stargazers_count">0</span>
+                                </span>
+                                <span class="pc-stat-item">
+                                    <svg class="icon-git icon-git--fork" viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v4.256a2.251 2.251 0 1 0 1.5 0V5.372Zm8 3.128a2.251 2.251 0 1 0-1.5 0v-4.256a2.251 2.251 0 1 0-1.5 0v4.256Zm-1.5-5.378a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-10.5 7.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm10.5 0a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"></path></svg>
+                                    <span class="pc-stat" data-field="forks_count">0</span>
+                                </span>
                             </div>
-                            <hr class="project-rule">
-                            <p class="project-desc">
-                                Wanted a Bible app that didn't feel like navigating a spreadsheet, so I made it like a social feed. Hooked up GPT-4o to break down the heavy verses and ElevenLabs so it literally reads to you. Built-in group chats too.
-                            </p>
-                            <p class="project-tags">Swift · Supabase · Firebase · OpenAI · ElevenLabs</p>
                         </div>
                     </div>
 
-                    <div class="project-entry fade-in">
-                        <div class="project-num">04</div>
-                        <div class="project-body">
-                            <div class="project-title-row">
-                                <h3 class="project-name">Discord AI Bot</h3>
-                                <div class="project-links">
-                                    <a href="https://github.com/Kiddo4993/Discord-Bot-Imbued-With-AI-Claude-API-" target="_blank" rel="noopener">[SRC]</a>
-                                </div>
+                    <div class="project-card fade-in" id="projectVentureLift">
+                        <div class="project-card-glow project-card-glow--html"></div>
+                        <div class="project-card-header">
+                            <span class="project-card-num">04</span>
+                            <span class="project-card-lang">
+                                <span class="lang-dot lang-dot--html"></span>HTML
+                            </span>
+                        </div>
+                        <h3 class="project-card-name">FutureMe VentureLift</h3>
+                        <p class="project-card-desc">Hackathon project — a career discovery platform that matches students with mentors and simulates real startup experiences to build entrepreneurship skills.</p>
+                        <div class="project-card-tags">
+                            <span>HTML</span><span>CSS</span><span>JavaScript</span><span>Hackathon</span>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="https://github.com/Kiddo4993/FutureMe-Venturelift" target="_blank" rel="noopener" class="pc-link">Source →</a>
+                            <div class="project-card-stats" data-repo="FutureMe-Venturelift">
+                                <span class="pc-stat-item">
+                                    <svg class="icon-git icon-git--star" viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97 1.937 4.19a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l1.936-4.189-3.046-2.97a.75.75 0 0 1 .415-1.279l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg>
+                                    <span class="pc-stat" data-field="stargazers_count">0</span>
+                                </span>
+                                <span class="pc-stat-item">
+                                    <svg class="icon-git icon-git--fork" viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v4.256a2.251 2.251 0 1 0 1.5 0V5.372Zm8 3.128a2.251 2.251 0 1 0-1.5 0v-4.256a2.251 2.251 0 1 0-1.5 0v4.256Zm-1.5-5.378a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-10.5 7.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm10.5 0a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"></path></svg>
+                                    <span class="pc-stat" data-field="forks_count">0</span>
+                                </span>
                             </div>
-                            <hr class="project-rule">
-                            <p class="project-desc">
-                                Just a Discord bot wired straight into the Claude API. I wasted a ridiculous amount of time writing the system prompts so it acts like an actual unhinged person instead of a boring AI assistant.
-                            </p>
-                            <p class="project-tags">Python · Discord.py · Claude API</p>
                         </div>
                     </div>
 
-                    <div class="project-entry fade-in">
-                        <div class="project-num">05</div>
-                        <div class="project-body">
-                            <div class="project-title-row">
-                                <h3 class="project-name">Clash Royale Deck Manager</h3>
-                                <div class="project-links">
-                                    <a href="https://github.com/Kiddo4993/Clash-Royale-Website-with-API-KEYS" target="_blank" rel="noopener">[SRC]</a>
-                                </div>
+                    <div class="project-card fade-in" id="projectDiscord">
+                        <div class="project-card-glow project-card-glow--py"></div>
+                        <div class="project-card-header">
+                            <span class="project-card-num">05</span>
+                            <span class="project-card-lang">
+                                <span class="lang-dot lang-dot--py"></span>Python
+                            </span>
+                        </div>
+                        <h3 class="project-card-name">Discord AI Bot</h3>
+                        <p class="project-card-desc">Discord bot wired into the Claude API with absurdly detailed system prompts so it acts like an actual unhinged person instead of a boring assistant.</p>
+                        <div class="project-card-tags">
+                            <span>Python</span><span>Discord.py</span><span>Claude API</span>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="https://github.com/Kiddo4993/Discord-Bot-Imbued-With-AI-Claude-API-" target="_blank" rel="noopener" class="pc-link">Source →</a>
+                            <div class="project-card-stats" data-repo="Discord-Bot-Imbued-With-AI-Claude-API-">
+                                <span class="pc-stat-item">
+                                    <svg class="icon-git icon-git--star" viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97 1.937 4.19a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l1.936-4.189-3.046-2.97a.75.75 0 0 1 .415-1.279l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg>
+                                    <span class="pc-stat" data-field="stargazers_count">0</span>
+                                </span>
+                                <span class="pc-stat-item">
+                                    <svg class="icon-git icon-git--fork" viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v4.256a2.251 2.251 0 1 0 1.5 0V5.372Zm8 3.128a2.251 2.251 0 1 0-1.5 0v-4.256a2.251 2.251 0 1 0-1.5 0v4.256Zm-1.5-5.378a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-10.5 7.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm10.5 0a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"></path></svg>
+                                    <span class="pc-stat" data-field="forks_count">0</span>
+                                </span>
                             </div>
-                            <hr class="project-rule">
-                            <p class="project-desc">
-                                I play too much Clash Royale so I built a tracker that pulls live game data right from their official API. You can stalk live card stats, track the current meta, and save decks.
-                            </p>
-                            <p class="project-tags">HTML · JavaScript · REST API</p>
                         </div>
                     </div>
 
+                    <div class="project-card fade-in" id="projectClash">
+                        <div class="project-card-glow project-card-glow--js"></div>
+                        <div class="project-card-header">
+                            <span class="project-card-num">06</span>
+                            <span class="project-card-lang">
+                                <span class="lang-dot lang-dot--js"></span>JavaScript
+                            </span>
+                        </div>
+                        <h3 class="project-card-name">Clash Royale Tracker</h3>
+                        <p class="project-card-desc">Built a live game tracker because I play too much CR. Pulls real-time card stats from the official API, tracks the meta, and saves decks.</p>
+                        <div class="project-card-tags">
+                            <span>JavaScript</span><span>REST API</span><span>HTML</span>
+                        </div>
+                        <div class="project-card-footer">
+                            <a href="https://github.com/Kiddo4993/Clash-Royale-Website-with-API-KEYS" target="_blank" rel="noopener" class="pc-link">Source →</a>
+                            <div class="project-card-stats" data-repo="Clash-Royale-Website-with-API-KEYS">
+                                <span class="pc-stat-item">
+                                    <svg class="icon-git icon-git--star" viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97 1.937 4.19a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l1.936-4.189-3.046-2.97a.75.75 0 0 1 .415-1.279l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"></path></svg>
+                                    <span class="pc-stat" data-field="stargazers_count">0</span>
+                                </span>
+                                <span class="pc-stat-item">
+                                    <svg class="icon-git icon-git--fork" viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M5 3.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm0 2.122a2.25 2.25 0 1 0-1.5 0v4.256a2.251 2.251 0 1 0 1.5 0V5.372Zm8 3.128a2.251 2.251 0 1 0-1.5 0v-4.256a2.251 2.251 0 1 0-1.5 0v4.256Zm-1.5-5.378a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-10.5 7.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm10.5 0a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z"></path></svg>
+                                    <span class="pc-stat" data-field="forks_count">0</span>
+                                </span>
+                            </div>
+                        </div>
+                        <span class="margin-note card-note-clash">* Current deck: Miner Poison. Yes, I'm that guy.</span>
+                    </div>
+
+                </div>
+
+                <div class="projects-github-cta fade-in">
+                    <a href="https://github.com/Kiddo4993" target="_blank" rel="noopener" class="github-cta-link">
+                        <span class="github-cta-text">View all repositories on GitHub</span>
+                        <span class="github-cta-arrow">→</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -215,12 +367,12 @@
         <section class="section" id="art">
             <div class="section-inner fade-in">
                 <div class="section-header section-header--art">
-                    <p class="section-label section-label--gold">[03] ART</p>
+                    <p class="section-label section-label--gold">03 / ART</p>
                     <h2 class="section-title section-title--art">Creative Work</h2>
                 </div>
 
                 <p class="art-intro">
-                    I do physical art — no AI, no digital layers. Just ink, gouache, and getting messy. Still wild to me that these hung in the Louvre.
+                    I do physical art: no AI, no digital layers. Just ink, gouache, and getting messy. Still wild to me that these hung in the Louvre.
                 </p>
 
                 <div class="art-entries">
@@ -248,7 +400,7 @@
                             <h3 class="art-entry-title art-entry-title--pop">Street Corner</h3>
                             <p class="art-entry-medium">Gouache &amp; acrylic on canvas</p>
                             <p class="art-entry-desc">Just a really chaotic, crowded city street at dusk doing its thing.</p>
-                            <p class="art-award art-award--pop">★ Silver Award — CICAF Toronto · Aug 2025</p>
+                            <p class="art-award art-award--pop">✦ Silver Award — CICAF Toronto · Aug 2025</p>
                             <a href="https://www.instagram.com/dylan_duan2010/" target="_blank" rel="noopener" class="art-link art-link--pop">Follow @dylan_duan2010 →</a>
                         </div>
                     </div>
@@ -262,7 +414,7 @@
                             <h3 class="art-entry-title art-entry-title--ink">Life After-Effects</h3>
                             <p class="art-entry-medium">Pen &amp; ink, direct on paper</p>
                             <p class="art-entry-desc">Huge figures dropping out of the sky onto a wrecked city. No pencil sketch first — straight ink.</p>
-                            <p class="art-award art-award--ink">★ Silver Award — CICAF Toronto · Aug 2024</p>
+                            <p class="art-award art-award--ink">✦ Silver Award — CICAF Toronto · Aug 2024</p>
                             <a href="https://github.com/Kiddo4993" target="_blank" rel="noopener" class="art-link art-link--ink">GitHub/Kiddo4993 →</a>
                         </div>
                     </div>
@@ -275,7 +427,7 @@
         <section class="section" id="skills">
             <div class="section-inner fade-in">
                 <div class="section-header">
-                    <p class="section-label">[04] SKILLS</p>
+                    <p class="section-label">04 / TECH STACK</p>
                     <h2 class="section-title">Tech Stack</h2>
                 </div>
 
@@ -323,6 +475,7 @@
                         </ul>
                     </div>
                 </div>
+                <span class="margin-note skills-note">* mostly learned by building.</span>
             </div>
         </section>
 
@@ -330,13 +483,13 @@
         <section class="section" id="contact">
             <div class="section-inner fade-in">
                 <div class="section-header">
-                    <p class="section-label">[05] CONTACT</p>
+                    <p class="section-label">05 / CONTACT</p>
                     <h2 class="section-title">Get In Touch</h2>
                 </div>
 
                 <div class="contact-body">
                     <p class="contact-line">
-                        If you want to build something stupidly cool, team up for a hackathon, or literally just talk about code and art — shoot me a message.
+                        If you want to build something cool, team up for a hackathon, or literally just talk about code and art — shoot me a message.
                     </p>
                     <ul class="contact-list">
                         <li><a href="mailto:dylanduancanada@gmail.com" class="contact-link">dylanduancanada@gmail.com <span class="arrow">→</span></a></li>
