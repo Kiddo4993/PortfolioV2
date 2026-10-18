@@ -30,6 +30,7 @@
             <li><a href="#skills"   class="nav-link" data-target="skills">  <span class="nav-num">04</span><span class="nav-label">Skills</span>  </a></li>
             <li><a href="#contact"  class="nav-link" data-target="contact"> <span class="nav-num">05</span><span class="nav-label">Contact</span> </a></li>
         </ul>
+        <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
         <button class="nav-burger" id="navBurger" aria-label="Open menu">
             <span></span>
             <span></span>
@@ -53,29 +54,29 @@
         <!-- ===== HERO ===== -->
         <section class="section hero" id="hero">
             <div class="hero-inner">
-                <div class="hero-left fade-in">
-                    <p class="hero-eyebrow">Software Engineer · Artist</p>
+                <div class="hero-left">
+                    <p class="hero-eyebrow" data-load style="--d:.05s">Software Engineer · Artist</p>
                     <h1 class="hero-name">Dylan<br><em>Duan</em></h1>
                     <div class="hero-social">
-                        <a href="https://github.com/Kiddo4993" target="_blank" rel="noopener" class="hero-arrow-link">GitHub <span class="arrow">→</span></a>
-                        <a href="https://www.instagram.com/dylan_duan2010/" target="_blank" rel="noopener" class="hero-arrow-link">Instagram <span class="arrow">→</span></a>
-                        <a href="https://art-portfolio.dylanduan2010.dev/" target="_blank" rel="noopener" class="hero-arrow-link">Art Portfolio <span class="arrow">→</span></a>
+                        <a href="https://github.com/Kiddo4993" target="_blank" rel="noopener" class="hero-arrow-link" data-load style="--d:.5s">GitHub <span class="arrow">→</span></a>
+                        <a href="https://www.instagram.com/dylan_duan2010/" target="_blank" rel="noopener" class="hero-arrow-link" data-load style="--d:.57s">Instagram <span class="arrow">→</span></a>
+                        <a href="https://art-portfolio.dylanduan2010.dev/" target="_blank" rel="noopener" class="hero-arrow-link" data-load style="--d:.64s">Art Portfolio <span class="arrow">→</span></a>
                     </div>
                 </div>
 
-                <div class="hero-rule"></div>
+                <div class="hero-rule" data-load="rule" style="--d:.3s"></div>
 
-                <div class="hero-right fade-in">
-                    <div class="hero-award">
+                <div class="hero-right">
+                    <div class="hero-award" data-load style="--d:.4s">
                         <p class="award-label">Médaille d'Or</p>
                         <p class="award-event">Carrousel du Louvre<br>Paris · January 2026</p>
                     </div>
-                    <div class="hero-awards-minor">
+                    <div class="hero-awards-minor" data-load style="--d:.5s">
                         <p><span class="star-icon">✦</span> Silver Award — CICAF Toronto · 2025</p>
                         <p><span class="star-icon">✦</span> Silver Award — CICAF Toronto · 2024</p>
                     </div>
-                    <p class="hero-tagline">I build apps, web platforms, and AI tools.<br>Obsessed with hackathons and VEX Robotics.</p>
-                    <span class="margin-note hero-note">* Yes, physical canvas art. No prompts, just getting messy with ink.</span>
+                    <p class="hero-tagline" data-load style="--d:.58s">I build apps, web platforms, and AI tools.<br>Obsessed with hackathons and VEX Robotics.</p>
+                    <span class="margin-note hero-note" data-load style="--d:.66s">* Yes, physical canvas art. No prompts, just getting messy with ink.</span>
                 </div>
             </div>
         </section>
@@ -507,6 +508,7 @@
         </footer>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
     <script src="script.js"></script>
 </body>
 

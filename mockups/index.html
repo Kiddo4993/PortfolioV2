@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dylan Duan</title>
+    <meta name="description" content="Dylan Duan: software engineer and artist. Gold Medal, Carrousel du Louvre 2026." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="minimal.css" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <!-- Pre-paint: hide load-in elements only if JS runs and motion is allowed. Failsafe after 3s. -->
+    <script>
+        (function () {
+            var d = document.documentElement;
+            if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            d.classList.add('motion');
+            var seen = false;
+            try { seen = sessionStorage.getItem('dd-intro') === '1'; } catch (e) {}
+            var intro = !seen && !location.hash;
+            if (intro) d.classList.add('is-intro');
+            // failsafe: never leave the page hidden if a script fails
+            setTimeout(function () { d.classList.add('ready'); d.classList.remove('is-intro'); }, intro ? 7000 : 3000);
+        })();
+    </script>
+</head>
+
+<body>
+    <div class="page">
+
+        <header class="top" data-in style="--i:0; --y:5px">
+            <a href="#" class="me">Dylan Duan</a>
+            <nav class="nav" aria-label="Sections">
+                <a href="#work">Work</a>
+                <a href="#art">Art</a>
+                <a href="#contact">Contact</a>
+                <button type="button" class="kbd-btn" id="kOpen" aria-label="Open command menu"
+                    data-note="⌘K: 100ms scale(.96) + fade from the top edge. Measured on Family's dropdowns: opacity 0.1s, transform 0.1s, scale .96.">⌘K</button>
+            </nav>
+        </header>
+
+        <main>
+            <section class="intro" aria-label="Introduction">
+                <h1 data-in style="--i:1; --y:24px"
+                    data-note="Hero blur-in, copied from Linear: opacity 0, blur(10px), translateY 24.8px → settled, 700ms cubic-bezier(.32,.72,0,1). Big text travels further than small text.">
+                    I build apps, web platforms, and AI tools.
+                    <span class="muted">I also paint, and one piece hung in the Louvre.</span>
+                </h1>
+                <p class="lede" data-in style="--i:2; --y:10px">
+                    Mostly learned to code by breaking stuff until it worked. Huge nerd for VEX Robotics
+                    (Team 77174A, “Holy Airball!”). Off the screen, ink and gouache.
+                </p>
+                <p class="award" data-in style="--i:3; --y:5px">
+                    <span class="medal" aria-hidden="true"></span>
+                    Médaille d'Or, Carrousel du Louvre, Paris · January 2026
+                </p>
+            </section>
+
+            <section id="work" class="block" data-reveal>
+                <h2 class="label">Work</h2>
+                <ul class="rows" id="workRows"
+                    data-note="Hover highlight slides between rows: 150ms cubic-bezier(.4,0,.2,1), Vercel's most-used UI transition. Click a row: height opens over 300ms cubic-bezier(.25,1,.5,1), Stripe's most-used curve (654 elements).">
+                    <li class="row" data-row>
+                        <button class="row-head" type="button" aria-expanded="false">
+                            <span class="r-name">SparkVEX</span>
+                            <span class="r-desc">VEX scouting with Bayesian alliance picks</span>
+                            <span class="r-meta">TypeScript</span>
+                        </button>
+                        <div class="row-body"><div class="row-inner">
+                            <p>Production-ready scouting platform. Bayesian probability model for alliance picks, chess-style ELO ratings with uncertainty, skills rankings, team chat, task boards, and live data from competition feeds. Predicted our rank within a 2% margin.</p>
+                            <p class="row-links"><a href="https://spark-vex-app.vercel.app" target="_blank" rel="noopener">Live demo ↗</a><a href="https://github.com/Kiddo4993/Spark-Vex-App" target="_blank" rel="noopener">Source ↗</a><span class="mono" data-stars="Spark-Vex-App"></span></p>
+                        </div></div>
+                    </li>
+                    <li class="row" data-row>
+                        <button class="row-head" type="button" aria-expanded="false">
+                            <span class="r-name">Lineage</span>
+                            <span class="r-desc">A calm place for artists to show their work</span>
+                            <span class="r-meta">TypeScript</span>
+                        </button>
+                        <div class="row-body"><div class="row-inner">
+                            <p>An art-focused creative app and my newest project. Built for artists who want a clean, distraction-free space to showcase and organize their work.</p>
+                            <p class="row-links"><a href="https://github.com/Kiddo4993/Lineage" target="_blank" rel="noopener">Source ↗</a></p>
+                        </div></div>
+                    </li>
+                    <li class="row" data-row>
+                        <button class="row-head" type="button" aria-expanded="false">
+                            <span class="r-name">SaintThunderBird</span>
+                            <span class="r-desc">Tutoring for First Nations students</span>
+                            <span class="r-meta">JavaScript</span>
+                        </button>
+                        <div class="row-body"><div class="row-inner">
+                            <p>Student and tutor dashboards, auto-generated Zoom links, and a full admin backend, all built from scratch.</p>
+                            <p class="row-links"><a href="https://saint-thunder-bird-tutoring-xi.vercel.app" target="_blank" rel="noopener">Live ↗</a><a href="https://github.com/Kiddo4993/SaintThunderBirdTutoring" target="_blank" rel="noopener">Source ↗</a></p>
+                        </div></div>
+                    </li>
+                    <li class="row" data-row>
+                        <button class="row-head" type="button" aria-expanded="false">
+                            <span class="r-name">Sanctum</span>
+                            <span class="r-desc">A Bible app that feels good to use</span>
+                            <span class="r-meta">Swift</span>
+                        </button>
+                        <div class="row-body"><div class="row-inner">
+                            <p>Social-feed UX, GPT-4o verse breakdowns, ElevenLabs audio narration, and built-in group chats.</p>
+                            <p class="row-links"><a href="https://github.com/Kiddo4993/Sanctum" target="_blank" rel="noopener">Source ↗</a></p>
+                        </div></div>
+                    </li>
+                    <li class="row" data-row>
+                        <button class="row-head" type="button" aria-expanded="false">
+                            <span class="r-name">Discord AI Bot</span>
+                            <span class="r-desc">Claude API with a personality problem</span>
+                            <span class="r-meta">Python</span>
+                        </button>
+                        <div class="row-body"><div class="row-inner">
+                            <p>A Discord bot wired into the Claude API, with absurdly detailed system prompts so it acts like an actual unhinged person instead of a boring assistant.</p>
+                            <p class="row-links"><a href="https://github.com/Kiddo4993/Discord-Bot-Imbued-With-AI-Claude-API-" target="_blank" rel="noopener">Source ↗</a></p>
+                        </div></div>
+                    </li>
+                    <li class="row" data-row>
+                        <button class="row-head" type="button" aria-expanded="false">
+                            <span class="r-name">FutureMe VentureLift</span>
+                            <span class="r-desc">Hackathon: mentors and simulated startups</span>
+                            <span class="r-meta">HTML</span>
+                        </button>
+                        <div class="row-body"><div class="row-inner">
+                            <p>A career discovery platform that matches students with mentors and simulates real startup experiences to build entrepreneurship skills.</p>
+                            <p class="row-links"><a href="https://github.com/Kiddo4993/FutureMe-Venturelift" target="_blank" rel="noopener">Source ↗</a></p>
+                        </div></div>
+                    </li>
+                    <li class="row" data-row>
+                        <button class="row-head" type="button" aria-expanded="false">
+                            <span class="r-name">Clash Royale Tracker</span>
+                            <span class="r-desc">Live card stats, because I play too much</span>
+                            <span class="r-meta">JavaScript</span>
+                        </button>
+                        <div class="row-body"><div class="row-inner">
+                            <p>Pulls real-time card stats from the official API, tracks the meta, and saves decks. Current deck: Miner Poison. Yes, I'm that guy.</p>
+                            <p class="row-links"><a href="https://github.com/Kiddo4993/Clash-Royale-Website-with-API-KEYS" target="_blank" rel="noopener">Source ↗</a></p>
+                        </div></div>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="art" class="block" data-reveal>
+                <h2 class="label">Art</h2>
+                <p class="section-note">Physical work. No AI, no digital layers, just ink, gouache, and getting messy.</p>
+                <ul class="rows" id="artRows"
+                    data-note="Hover a title: a preview follows the cursor at a 0.15 lerp and appears with scale .96 → 1 over 200ms cubic-bezier(.23,1,.32,1), Raycast's and darkroom's curve. Placeholder plates; swap in photos.">
+                    <li class="row" data-plate="cosmic">
+                        <a class="row-head" href="https://art-portfolio.dylanduan2010.dev/" target="_blank" rel="noopener">
+                            <span class="r-name">Recurrence Between Two Best Friends</span>
+                            <span class="r-desc">White ink and gouache on black paper</span>
+                            <span class="r-meta gold">Gold · 2026</span>
+                        </a>
+                    </li>
+                    <li class="row" data-plate="pop">
+                        <a class="row-head" href="https://www.instagram.com/dylan_duan2010/" target="_blank" rel="noopener">
+                            <span class="r-name">Street Corner</span>
+                            <span class="r-desc">Gouache and acrylic on canvas</span>
+                            <span class="r-meta">Silver · 2025</span>
+                        </a>
+                    </li>
+                    <li class="row" data-plate="ink">
+                        <a class="row-head" href="https://art-portfolio.dylanduan2010.dev/" target="_blank" rel="noopener">
+                            <span class="r-name">Life After-Effects</span>
+                            <span class="r-desc">Pen and ink, straight onto paper</span>
+                            <span class="r-meta">Silver · 2024</span>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <section id="stack" class="block" data-reveal>
+                <h2 class="label">Stack</h2>
+                <dl class="stack">
+                    <dt>Languages</dt><dd>Python, Java, C++, TypeScript, JavaScript, Swift, Lua</dd>
+                    <dt>Frameworks</dt><dd>Next.js, React, Node.js, Tailwind, Prisma, NextAuth, Discord.py</dd>
+                    <dt>Tools</dt><dd>PostgreSQL, Supabase, Firebase, Vercel, Neon, OpenAI API, Claude API</dd>
+                </dl>
+            </section>
+
+            <section id="contact" class="block" data-reveal>
+                <h2 class="label">Contact</h2>
+                <p class="section-note">Want to build something, team up for a hackathon, or talk about code and art? Send me a message.</p>
+                <div class="contact">
+                    <button type="button" class="copy" id="copyEmail" data-email="dylanduancanada@gmail.com"
+                        data-note="Copy swaps the label with a 200ms blur crossfade; ease-out at 0.2s is Family's most common transition (120 elements).">
+                        <span class="copy-addr">dylanduancanada@gmail.com</span>
+                        <span class="copy-state"><span class="s-idle">Copy</span><span class="s-done">Copied</span></span>
+                    </button>
+                    <p class="links">
+                        <a href="https://github.com/Kiddo4993" target="_blank" rel="noopener">GitHub ↗</a>
+                        <a href="https://www.instagram.com/dylan_duan2010/" target="_blank" rel="noopener">Instagram ↗</a>
+                        <a href="https://art-portfolio.dylanduan2010.dev/" target="_blank" rel="noopener">Art portfolio ↗</a>
+                    </p>
+                </div>
+            </section>
+        </main>
+
+        <footer class="foot mono">EOF · Designed and built by Dylan Duan · 2026</footer>
+    </div>
+
+    <!-- intro overlay (filled by intro.js) -->
+    <div id="intro" aria-hidden="true"></div>
+
+    <!-- art hover preview -->
+    <div class="preview" id="preview" aria-hidden="true">
+        <div class="plate" data-plate="cosmic"></div>
+        <div class="plate" data-plate="pop"></div>
+        <div class="plate" data-plate="ink"></div>
+    </div>
+
+    <!-- ⌘K -->
+    <div class="k" id="k" hidden>
+        <div class="k-scrim" data-close></div>
+        <div class="k-panel" role="dialog" aria-label="Command menu">
+            <input id="kInput" type="text" placeholder="Type a command" autocomplete="off" aria-label="Filter commands" aria-controls="kList">
+            <ul class="k-list" id="kList" role="listbox"></ul>
+        </div>
+    </div>
+
+    <!-- mockup only -->
+    <div class="dock">
+        <button type="button" class="notes-btn" onclick="window.replayIntro && window.replayIntro()">Replay intro</button>
+        <button type="button" class="notes-btn" id="notesBtn" aria-pressed="false">Motion notes</button>
+    </div>
+
+    <script src="intro.js"></script>
+    <script src="minimal.js"></script>
+</body>
+
+</html>
